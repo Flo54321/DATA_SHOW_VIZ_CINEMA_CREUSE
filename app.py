@@ -60,7 +60,7 @@ def set_background(image_path):
         """, unsafe_allow_html=True)
 
 # Chemin de votre image pour le fond d'écran
-image_path = "images\cinema.png"
+image_path = "images/cinema.png"
 set_background(image_path)
 
 # Charger les données
