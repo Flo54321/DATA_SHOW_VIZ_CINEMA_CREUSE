@@ -60,7 +60,7 @@ def set_background(image_path):
         """, unsafe_allow_html=True)
 
 # Chemin de votre image pour le fond d'écran
-image_path = r"C:\Users\flori\Desktop\FORMATION DATA ANALYST\PROJET_2\STREAMLIT\SUGGESTION_FILMS\images\cinema.png"
+image_path = "images\cinema.png"
 set_background(image_path)
 
 # Charger les données
@@ -77,7 +77,7 @@ def load_data(csv_path):
     df['URL_AFFICHE'] = df['URL_AFFICHE'].fillna('placeholder.jpg')  # Gérer les affiches manquantes
     return df
 
-csv_path = r"C:\Users\flori\Desktop\FORMATION DATA ANALYST\PROJET_2\BDD\mon_dataframe.csv"
+csv_path = "mon_dataframe.csv"
 df = load_data(csv_path)
 
 # Nettoyer la liste des acteurs (enlever les crochets et guillemets)
