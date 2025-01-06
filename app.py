@@ -77,7 +77,7 @@ def load_data(csv_path):
     df['URL_AFFICHE'] = df['URL_AFFICHE'].fillna('placeholder.jpg')  # Gérer les affiches manquantes
     return df
 
-csv_path = "mon_dataframe.csv"
+csv_path = "data/mon_dataframe.csv"
 df = load_data(csv_path)
 
 # Nettoyer la liste des acteurs (enlever les crochets et guillemets)
