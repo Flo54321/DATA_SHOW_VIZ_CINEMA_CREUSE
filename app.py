@@ -357,13 +357,6 @@ elif st.session_state.menu == "Recherche par films":
         else:
             st.write("Aucune suggestion disponible pour ce film.")
 
-        if not knn_results.empty:
-            cols = st.columns(5)  # 5 films par ligne
-            for i, (_, row) in enumerate(knn_results.iterrows()):
-                with cols[i % 5]:
-                    translated_synopsis = get_synopsis_in_language(row['Description'], st.session_state.language)
-                    display_movie_with_synopsis(row, translated_synopsis)
-
                     # Appliquer le tri uniquement si l'utilisateur choisit une option de tri
         if sort_option == "Année de sortie (croissant)":
             movie_results = movie_results.sort_values(by='Year', ascending=True)
