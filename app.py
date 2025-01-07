@@ -30,18 +30,18 @@ st.set_page_config(layout="wide")
 st.markdown("""
     <style>
         /* Appliquer le style uniquement en mode light */
-        .stApp:not(.streamlit-dark) .css-1d391kg {
+        .stApp:not(.streamlit-dark) .st-emotion-cache-6qob1r {
             background-color: #f0f0f0 !important;  /* Couleur de fond grise */
         }
-        .stApp:not(.streamlit-dark) .css-1d391kg .st-bb {
+        .stApp:not(.streamlit-dark) .st-emotion-cache-6qob1r .stButton > button {
             color: #333333 !important;  /* Couleur du texte en noir foncé */
         }
 
         /* Appliquer un style différent en mode dark si nécessaire */
-        .stApp.streamlit-dark .css-1d391kg {
+        .stApp.streamlit-dark .st-emotion-cache-6qob1r {
             background-color: #2e2e2e !important;  /* Couleur de fond sombre */
         }
-        .stApp.streamlit-dark .css-1d391kg .st-bb {
+        .stApp.streamlit-dark .st-emotion-cache-6qob1r .stButton > button {
             color: #ffffff !important;  /* Couleur du texte en blanc */
         }
     </style>
