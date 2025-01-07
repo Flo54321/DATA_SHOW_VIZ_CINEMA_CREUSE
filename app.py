@@ -357,11 +357,6 @@ elif st.session_state.menu == "Recherche par films":
         else:
             st.write("Aucune suggestion disponible pour ce film.")
 
-        # Recommandation KNN (uniquement si un film spécifique est sélectionné)
-        st.markdown(f"### Suggestions basées sur '{movie_search}'")
-        knn_results = knn_recommendations(movie_search, df, k=10)
-        knn_results = knn_results[(knn_results['Year'] >= start_year) & (knn_results['Year'] <= end_year)]
-
         if not knn_results.empty:
             cols = st.columns(5)  # 5 films par ligne
             for i, (_, row) in enumerate(knn_results.iterrows()):
