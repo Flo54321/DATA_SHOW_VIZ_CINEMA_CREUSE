@@ -29,20 +29,31 @@ st.set_page_config(layout="wide")
 # Ajouter du CSS personnalisé pour la barre de menu à gauche
 st.markdown("""
     <style>
-        /* Appliquer le style uniquement en mode light */
-        .stApp:not(.streamlit-dark) [data-testid="stSidebar"] {
-            background-color: #f0f0f0 !important;  /* Couleur de fond grise */
-        }
-        .stApp:not(.streamlit-dark) [data-testid="stSidebar"] * {
-            color: #333333 !important;  /* Couleur du texte en noir foncé */
+        /* Forcer la couleur de fond de la barre de menu en gris */
+        [data-testid="stSidebar"] {
+            background-color: #808080 !important;  /* Couleur de fond grise */
         }
 
-        /* Appliquer un style différent en mode dark si nécessaire */
-        .stApp.streamlit-dark [data-testid="stSidebar"] {
-            background-color: #2e2e2e !important;  /* Couleur de fond sombre */
-        }
-        .stApp.streamlit-dark [data-testid="stSidebar"] * {
+        /* Forcer la couleur du texte en blanc pour tous les éléments de la barre de menu */
+        [data-testid="stSidebar"] * {
             color: #ffffff !important;  /* Couleur du texte en blanc */
+        }
+
+        /* Forcer la couleur des boutons dans la barre de menu */
+        [data-testid="stSidebar"] .stButton > button {
+            color: #ffffff !important;  /* Couleur du texte en blanc */
+            background-color: #808080 !important;  /* Couleur de fond grise */
+            border: 1px solid #ffffff !important;  /* Bordure blanche */
+        }
+
+        /* Forcer la couleur des liens dans la barre de menu */
+        [data-testid="stSidebar"] a {
+            color: #ffffff !important;  /* Couleur du texte en blanc */
+        }
+
+        /* Forcer la couleur des icônes dans la barre de menu */
+        [data-testid="stSidebar"] svg {
+            fill: #ffffff !important;  /* Couleur des icônes en blanc */
         }
     </style>
 """, unsafe_allow_html=True)
