@@ -26,16 +26,23 @@ def get_synopsis_in_language(description, lang='fr'):
 # Configurer la mise en page
 st.set_page_config(layout="wide")
 
-# Ajouter du CSS personnalisé pour la barre de menu à gauche
+# Ajouter du CSS personnalisé pour la barre de menu à gauche en fonction du mode
 st.markdown("""
     <style>
-        /* Changer la couleur de la barre de menu à gauche en gris */
-        .css-1d391kg {
-            background-color: #f0f0f0 !important;
+        /* Appliquer le style uniquement en mode light */
+        .stApp:not(.streamlit-dark) .css-1d391kg {
+            background-color: #f0f0f0 !important;  /* Couleur de fond grise */
         }
-        /* Changer la couleur du texte dans la barre de menu à gauche */
-        .css-1d391kg .st-bb {
-            color: #333333 !important;
+        .stApp:not(.streamlit-dark) .css-1d391kg .st-bb {
+            color: #333333 !important;  /* Couleur du texte en noir foncé */
+        }
+
+        /* Appliquer un style différent en mode dark si nécessaire */
+        .stApp.streamlit-dark .css-1d391kg {
+            background-color: #2e2e2e !important;  /* Couleur de fond sombre */
+        }
+        .stApp.streamlit-dark .css-1d391kg .st-bb {
+            color: #ffffff !important;  /* Couleur du texte en blanc */
         }
     </style>
 """, unsafe_allow_html=True)
