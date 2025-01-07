@@ -261,7 +261,7 @@ if st.session_state.menu == "Page d'accueil":
         genre_movies = recent_movies[recent_movies['Genres'].str.contains(genre, na=False)]
 
         # Appliquer le filtre d'année
-        genre_movies = genre_movies[(genre_movies['Year'] >= start_year) & (genre_movies['Year'] <= end_year)]
+        genre_movies = genre_movies[(genre_movies['Year'] >= 2021) & (genre_movies['Year'] <= end_year)]
 
         # Appliquer le tri uniquement si l'utilisateur choisit une option de tri
         if sort_option == "Année de sortie (croissant)":
