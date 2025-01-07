@@ -26,34 +26,36 @@ def get_synopsis_in_language(description, lang='fr'):
 # Configurer la mise en page
 st.set_page_config(layout="wide")
 
-# Ajouter du CSS personnalisé pour la barre de menu à gauche
 st.markdown("""
     <style>
-        /* Forcer la couleur de fond de la barre de menu en gris */
+        /* Darker gray background for the sidebar */
         [data-testid="stSidebar"] {
-            background-color: #808080 !important;  /* Couleur de fond grise */
+            background-color: #404040 !important;
         }
-
-        /* Forcer la couleur du texte en blanc pour tous les éléments de la barre de menu */
+        /* White text for all elements inside the sidebar */
         [data-testid="stSidebar"] * {
-            color: #ffffff !important;  /* Couleur du texte en blanc */
+            color: #ffffff !important;
         }
-
-        /* Forcer la couleur des boutons dans la barre de menu */
+        /* Additional styling for sidebar buttons and icons */
         [data-testid="stSidebar"] .stButton > button {
-            color: #ffffff !important;  /* Couleur du texte en blanc */
-            background-color: #808080 !important;  /* Couleur de fond grise */
-            border: 1px solid #ffffff !important;  /* Bordure blanche */
+            background-color: #404040 !important;
+            border: 1px solid #ffffff !important;
+            color: #ffffff !important;
         }
-
-        /* Forcer la couleur des liens dans la barre de menu */
-        [data-testid="stSidebar"] a {
-            color: #ffffff !important;  /* Couleur du texte en blanc */
-        }
-
-        /* Forcer la couleur des icônes dans la barre de menu */
         [data-testid="stSidebar"] svg {
-            fill: #ffffff !important;  /* Couleur des icônes en blanc */
+            fill: #ffffff !important;
+        }
+        /* Style for top menus if they are within the header */
+        [data-testid="stHeader"] {
+            background-color: #404040 !important;
+        }
+        [data-testid="stHeader"] * {
+            color: #ffffff !important;
+        }
+        /* For top menu buttons */
+        [data-testid="stToolbar"] .stButton > button {
+            background-color: #404040 !important;
+            color: #ffffff !important;
         }
     </style>
 """, unsafe_allow_html=True)
