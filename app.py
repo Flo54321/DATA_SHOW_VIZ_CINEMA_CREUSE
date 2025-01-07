@@ -26,22 +26,22 @@ def get_synopsis_in_language(description, lang='fr'):
 # Configurer la mise en page
 st.set_page_config(layout="wide")
 
-# Ajouter du CSS personnalisé pour la barre de menu à gauche en fonction du mode
+# Ajouter du CSS personnalisé pour la barre de menu à gauche
 st.markdown("""
     <style>
         /* Appliquer le style uniquement en mode light */
-        .stApp:not(.streamlit-dark) .st-emotion-cache-6qob1r {
+        .stApp:not(.streamlit-dark) [data-testid="stSidebar"] {
             background-color: #f0f0f0 !important;  /* Couleur de fond grise */
         }
-        .stApp:not(.streamlit-dark) .st-emotion-cache-6qob1r .stButton > button {
+        .stApp:not(.streamlit-dark) [data-testid="stSidebar"] * {
             color: #333333 !important;  /* Couleur du texte en noir foncé */
         }
 
         /* Appliquer un style différent en mode dark si nécessaire */
-        .stApp.streamlit-dark .st-emotion-cache-6qob1r {
+        .stApp.streamlit-dark [data-testid="stSidebar"] {
             background-color: #2e2e2e !important;  /* Couleur de fond sombre */
         }
-        .stApp.streamlit-dark .st-emotion-cache-6qob1r .stButton > button {
+        .stApp.streamlit-dark [data-testid="stSidebar"] * {
             color: #ffffff !important;  /* Couleur du texte en blanc */
         }
     </style>
