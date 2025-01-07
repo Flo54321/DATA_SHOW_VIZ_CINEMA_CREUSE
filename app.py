@@ -21,6 +21,7 @@ def get_synopsis_in_language(description, lang='fr'):
         else:
             return description  # Le synopsis est déjà en anglais par défaut
     except Exception as e:
+        st.warning(f"Erreur de traduction : {e}")  # Afficher un avertissement en cas d'erreur
         return description  # Retourner le texte original en cas d'erreur
 
 # Configurer la mise en page
@@ -74,7 +75,7 @@ def load_data(csv_path):
     df['All_Actors'] = df['All_Actors'].str.strip()
     df['Description'] = df['Description'].fillna('Description indisponible.')
     df['Title'] = df['Title'].str.strip().str.lower()
-    df['URL_AFFICHE'] = df['URL_AFFICHE'].fillna('placeholder.jpg')  # Gérer les affiches manquantes
+    df['URL_AFFICHE'] = df['URL_AFFICHE'].fillna('https://via.placeholder.com/200x300')  # Image par défaut
     return df
 
 csv_path = "data/mon_dataframe.csv"
@@ -86,9 +87,10 @@ def clean_actor_list(actor_list):
 
 # Afficher l'affiche ou un espace vide si l'affiche est manquante
 def display_movie_with_synopsis(row, synopsis):
+    poster_url = row['URL_AFFICHE'] if row['URL_AFFICHE'] else "https://via.placeholder.com/200x300"  # Image par défaut
     st.markdown(f"""
         <div class="movie-container">
-            <img src="{row['URL_AFFICHE']}" class="movie-poster" alt="{row['Title']}">
+            <img src="{poster_url}" class="movie-poster" alt="{row['Title']}">
             <div class="movie-synopsis">
                 <p>{synopsis}</p>
             </div>
@@ -102,6 +104,7 @@ def display_movie_with_synopsis(row, synopsis):
     """, unsafe_allow_html=True)
 
 # Fonction pour les recommandations basées sur KNN
+@st.cache_data
 def knn_recommendations(movie_title, df, k=5):
     df['Titre_normalized'] = df['Title'].str.strip().str.lower()
     movie_title_normalized = movie_title.strip().lower()
@@ -135,7 +138,7 @@ def knn_recommendations(movie_title, df, k=5):
     distances, indices = pipeline['knn'].kneighbors(movie_transformed)
 
     similar_movies = df.iloc[indices[0]]
-    return similar_movies
+    return similar_movies.drop_duplicates(subset=['Title'])  # Supprimer les doublons
 
 # Fonction pour afficher les drapeaux et changer la langue dans le menu de gauche
 def render_language_selector():
@@ -351,20 +354,11 @@ elif st.session_state.menu == "Recherche par films":
         if not knn_results.empty:
             cols = st.columns(5)  # 5 films par ligne
             for i, (_, row) in enumerate(knn_results.iterrows()):
+                if i >= len(cols) * 5:  # Limiter à 5 films par ligne
+                    break
                 with cols[i % 5]:
                     translated_synopsis = get_synopsis_in_language(row['Description'], st.session_state.language)
                     display_movie_with_synopsis(row, translated_synopsis)
-        else:
-            st.write("Aucune suggestion disponible pour ce film.")
-
-                    # Appliquer le tri uniquement si l'utilisateur choisit une option de tri
-        if sort_option == "Année de sortie (croissant)":
-            movie_results = movie_results.sort_values(by='Year', ascending=True)
-        elif sort_option == "Année de sortie (décroissant)":
-            movie_results = movie_results.sort_values(by='Year', ascending=False)
-        elif sort_option == "Note (meilleure à moins bonne)":
-            movie_results['Rating'] = pd.to_numeric(movie_results['Vote_average'], errors='coerce')
-            movie_results = movie_results.sort_values(by='Rating', ascending=False)
         else:
             st.write("Aucune suggestion disponible pour ce film.")
 
