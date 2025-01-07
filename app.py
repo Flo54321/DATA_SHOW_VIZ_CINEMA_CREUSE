@@ -26,40 +26,6 @@ def get_synopsis_in_language(description, lang='fr'):
 # Configurer la mise en page
 st.set_page_config(layout="wide")
 
-st.markdown("""
-    <style>
-        /* Darker gray background for the sidebar */
-        [data-testid="stSidebar"] {
-            background-color: #404040 !important;
-        }
-        /* White text for all elements inside the sidebar */
-        [data-testid="stSidebar"] * {
-            color: #ffffff !important;
-        }
-        /* Additional styling for sidebar buttons and icons */
-        [data-testid="stSidebar"] .stButton > button {
-            background-color: #404040 !important;
-            border: 1px solid #ffffff !important;
-            color: #ffffff !important;
-        }
-        [data-testid="stSidebar"] svg {
-            fill: #ffffff !important;
-        }
-        /* Style for top menus if they are within the header */
-        [data-testid="stHeader"] {
-            background-color: #404040 !important;
-        }
-        [data-testid="stHeader"] * {
-            color: #ffffff !important;
-        }
-        /* For top menu buttons */
-        [data-testid="stToolbar"] .stButton > button {
-            background-color: #404040 !important;
-            color: #ffffff !important;
-        }
-    </style>
-""", unsafe_allow_html=True)
-
 # Fonction pour convertir une image locale en base64
 def get_base64_of_image(image_path):
     with open(image_path, "rb") as image_file:
